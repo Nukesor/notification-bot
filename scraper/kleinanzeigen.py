@@ -3,6 +3,7 @@ import os
 import time
 from telegram.ext import CallbackContext
 from telegram.constants import ParseMode
+from telegram.error import NetworkError, TimedOut
 import requests
 import traceback
 from datetime import datetime, timedelta
@@ -34,6 +35,10 @@ async def scrape(context: CallbackContext) -> None:
     try:
         await scrape_inner(context)
     except Exception as ex:
+        # Ignore telegram network errors
+        if type(ex) is TimedOut or type(ex) is NetworkError:
+            return
+
         print(f"Got exception {ex}")
         traceback.print_exc()
         # await context.bot.sendMessage(

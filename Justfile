@@ -1,7 +1,7 @@
 default: run
 
 run:
-    poetry run python main.py
+    poetry run python main.py run
 
 setup:
     poetry install

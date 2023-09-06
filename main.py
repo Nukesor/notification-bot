@@ -15,5 +15,13 @@ def run():
     app.run_polling()
 
 
+@cli.command()
+def stub():
+    """Actually start the bot."""
+    app = init_telegram()
+    typer.echo("Starting the bot in polling mode.")
+    app.run_polling()
+
+
 if __name__ == "__main__":
     cli()

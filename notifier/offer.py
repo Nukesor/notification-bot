@@ -87,12 +87,10 @@ class Offer:
         if self.time is None:
             formatted_time = str(self.time)
         else:
-            formatted_time = self.time.strftime("%m.%d - %H:%M")
+            formatted_time = self.time.strftime("%m.%d.%y - %H:%M")
 
         tags = ", ".join(self.tags)
-        text = f"""{self.raw_time} ({formatted_time})
-
-[{self.title}]({self.link})
+        text = f"""[{self.title}]({self.link})
 
 {self.location}
 
@@ -101,6 +99,8 @@ class Offer:
 ---
 
 {self.description}
+
+Gepostet am: {formatted_time}
 """
 
         return text

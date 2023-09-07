@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "scraper"
+name = "notifier"
 version = "0.0.1"
-description = "A scraper of mine"
+description = "A telegram notifier of mine"
 authors = ["Arne Beer <contact@arne.beer>"]
 license = "MIT"
 #repository = "https://github.com/nukesor/ultimate-poll-bot"

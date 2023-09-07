@@ -2,7 +2,7 @@
 """The main entry point for the bot."""
 import typer
 
-from scraper.telegram import init_telegram
+from notifier import init_telegram
 
 cli = typer.Typer()
 

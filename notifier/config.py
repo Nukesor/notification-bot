@@ -16,7 +16,7 @@ default_config = {
     },
 }
 
-config_path = os.path.expanduser("~/.config/kleinanzeigen.toml")
+config_path = os.path.expanduser("~/.config/telegram_notifier.toml")
 
 if not os.path.exists(config_path):
     with open(config_path, "wb") as file_descriptor:

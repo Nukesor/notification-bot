@@ -90,13 +90,13 @@ class Offer:
             formatted_time = self.time.strftime("%m.%d - %H:%M")
 
         tags = ", ".join(self.tags)
-        text = f"""
-*Title:* {self.title}
-*Gegend:* {self.location}
-*Link:* [Angebot]({self.link})
-*Date:*  {self.raw_time} ({formatted_time})
-*Price:* {self.price}
-*Tags:*  {tags}
+        text = f"""{self.raw_time} ({formatted_time})
+
+[{self.title}]({self.link})
+
+{self.location}
+
+{self.price}, {tags}
 
 ---
 

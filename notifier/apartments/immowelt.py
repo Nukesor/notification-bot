@@ -1,15 +1,10 @@
-import traceback
-import re
-from datetime import datetime, timedelta
-
 import requests
 from bs4 import BeautifulSoup
-from telegram.error import NetworkError, TimedOut
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
-from notifier.notify import send_offers
 from notifier.offer import Offer
+from notifier.notify import send_offers
 
 headers = {
     "Accept": (
@@ -26,28 +21,6 @@ headers = {
 
 
 async def scrape_immowelt(context: CallbackContext) -> None:
-    """This is a high level wrapper around the actual scraper logic.
-
-    It's purpose is to allow easy global error handling.
-    """
-    try:
-        logger.info("Checking Immowelt")
-        await scrape_inner(context)
-    except Exception as ex:
-        # Ignore telegram network errors
-        if type(ex) is TimedOut or type(ex) is NetworkError:
-            return
-
-        logger.error(f"Got exception {ex}")
-        traceback.print_exc()
-        # await context.bot.sendMessage(
-        #    chat_id=config["telegram"]["target_channel"],
-        #    text=f"Scraper failed with exception {ex}",
-        # )
-        return
-
-
-async def scrape_inner(context: CallbackContext) -> None:
     """Scrape Immowelt and send regular updates on new events."""
 
     # Load the side with the our current search criteria
@@ -91,11 +64,7 @@ async def scrape_inner(context: CallbackContext) -> None:
 
             raise ex
 
-    import pprint
-
-    pprint.pprint(offers)
-
-    # await send_offers(context.bot, offers)
+    await send_offers(context.bot, offers)
 
 
 def extract_offer_details(raw_offer) -> Offer | None:

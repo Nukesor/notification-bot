@@ -2,8 +2,7 @@ from telegram.ext import Application, ContextTypes
 from telegram.error import NetworkError, TimedOut
 
 from notifier.config import config
-from notifier.apartments.kleinanzeigen import scrape as scrape_kleinanzeigen
-from notifier.apartments.immowelt import scrape_immowelt
+from notifier.apartments import scrape
 
 
 def init_telegram():
@@ -18,18 +17,11 @@ def init_telegram():
     app.add_error_handler(error_handler)
 
     job_queue = app.job_queue
-    # job_queue.run_repeating(
-    #    scrape_kleinanzeigen,
-    #    interval=5 * 60,
-    #    first=10,
-    #    name="Scrape kleinanzeigen",
-    # )
-
     job_queue.run_repeating(
-        scrape_immowelt,
+        scrape,
         interval=5 * 60,
-        first=1,
-        name="Scrape immowelt",
+        first=10,
+        name="Scrape stuff",
     )
 
     return app

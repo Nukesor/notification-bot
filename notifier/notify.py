@@ -1,13 +1,12 @@
-import os
 import time
 
 from telegram import Bot
 from telegram.constants import ParseMode
 
 from notifier.config import config
+from notifier.logging import logger
+from notifier.known_keys import KnownKeys
 from notifier.offer import Offer
-
-known_ids_path = os.path.expanduser("~/.local/share/notifier_known_ids")
 
 
 async def send_offers(bot: Bot, offers: list[Offer]) -> None:
@@ -16,24 +15,21 @@ async def send_offers(bot: Bot, offers: list[Offer]) -> None:
     We do some additional checks in here to only send offers that are viable to us.
     We also make sure that we don't send offers twice.
     """
-
-    # Get the list of all ids that we already sent
-    known_ids = []
-    if os.path.exists(known_ids_path):
-        with open(known_ids_path, "r") as reader:
-            text = reader.read().strip()
-            known_ids = text.split("\n")
+    known_keys = KnownKeys()
+    known_keys.read_from_disk()
 
     for offer in offers:
         # Don't send offers twice
-        if offer.id in known_ids:
+        if known_keys.has_key(offer.source, offer.id):
             continue
 
         # Ignore offers that don't match our criteria
         if not offer.is_viable():
-            known_ids.append(offer.id)
+            known_keys.add_key(offer.source, offer.id)
             continue
 
+        logger.info(f"Sending notification for: {offer.title}")
+        # Send the notification
         await bot.sendMessage(
             chat_id=config["telegram"]["target_channel"],
             text=offer.format(),
@@ -43,8 +39,5 @@ async def send_offers(bot: Bot, offers: list[Offer]) -> None:
 
         time.sleep(2)
 
-        known_ids.append(offer.id)
-
-    # Write the known_ids file back to disk
-    with open(known_ids_path, "w") as descriptor:
-        descriptor.write("\n".join(known_ids))
+        known_keys.add_key(offer.source, offer.id)
+        known_keys.write_to_disk()

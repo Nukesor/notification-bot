@@ -1,9 +1,7 @@
-import traceback
 from datetime import datetime, timedelta
 
 import requests
 from bs4 import BeautifulSoup
-from telegram.error import NetworkError, TimedOut
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
@@ -12,7 +10,9 @@ from notifier.offer import Offer
 
 headers = {
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "text/html;charset=utf-8,"
+        + "application/xhtml+xml;charset=utf-8,"
+        + "application/xml;q=0.9;charset=utf-8,"
         + "image/avif,image/webp,*/*;q=0.8"
     ),
     "Accept-Encoding": "gzip, deflate, br",
@@ -24,29 +24,7 @@ headers = {
 }
 
 
-async def scrape(context: CallbackContext) -> None:
-    """This is a high level wrapper around the actual scraper logic.
-
-    It's purpose is to allow easy global error handling.
-    """
-    try:
-        logger.info("Checking Kleinanzeigen")
-        await scrape_inner(context)
-    except Exception as ex:
-        # Ignore telegram network errors
-        if type(ex) is TimedOut or type(ex) is NetworkError:
-            return
-
-        logger.error(f"Got exception {ex}")
-        traceback.print_exc()
-        # await context.bot.sendMessage(
-        #    chat_id=config["telegram"]["target_channel"],
-        #    text=f"Scraper failed with exception {ex}",
-        # )
-        return
-
-
-async def scrape_inner(context: CallbackContext) -> None:
+async def scrape_kleinanzeigen(context: CallbackContext) -> None:
     """Scrape Kleinanzeigen and send regular updates on new events."""
 
     # Load the side with the our current search criteria

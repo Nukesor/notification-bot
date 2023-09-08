@@ -94,6 +94,7 @@ async def scrape_inner(context: CallbackContext) -> None:
 
 def extract_offer_details(raw_offer) -> Offer | None:
     offer = Offer()
+    offer.source = "Kleinanzeigen"
 
     # Filter list items that aren't real offers
     if raw_offer.find("article") is None:
@@ -153,8 +154,8 @@ def extract_offer_details(raw_offer) -> Offer | None:
     )
 
     tag_items = raw_offer.find(attrs={"class": "aditem-main--bottom"})
-    offer.tags = []
+    offer.key_data = []
     for tag_item in tag_items.select("span.simpletag"):
-        offer.tags.append(tag_item.get_text().strip())
+        offer.key_data.append(tag_item.get_text().strip())
 
     return offer

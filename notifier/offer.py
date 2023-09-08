@@ -10,12 +10,13 @@ class Offer:
 
     id: str
     link: str
+    source: str
 
     title: str
     description: str
     time: datetime | None
     raw_time: str
-    tags: list[str]
+    key_data: list[str]
 
     location: str
     price: int
@@ -25,12 +26,14 @@ class Offer:
 
         self.id = ""
         self.link = ""
-        self.title = ""
+        self.source = ""
 
+        self.title = ""
         self.description = ""
         self.time = None
         self.raw_time = ""
-        self.tags = []
+        self.key_data = []
+        self.equipment = []
 
         self.location = ""
         self.price = 0
@@ -89,22 +92,31 @@ class Offer:
 
     def format(self) -> str:
         if self.time is None:
-            formatted_time = str(self.time)
+            formatted_time = str(self.raw_time)
         else:
             formatted_time = self.time.strftime("%m.%d.%y - %H:%M")
 
-        tags = ", ".join(self.tags)
-        text = f"""[{self.title}]({self.link})
+        # Only show equipment, if it exists.
+        equipment = ""
+        if len(self.equipment) != 0:
+            equipment = "\n" + ", ".join(self.equipment)
+
+        description = ""
+        if self.description != "":
+            description = f"\n---\n{self.description}\n"
+
+        key_data = ", ".join(self.key_data)
+        text = f"""Von {self.source}:
+[{self.title}]({self.link})
 
 {self.location}
 
-{self.price}, {tags}
-
----
-
-{self.description}
-
-Gepostet am: {formatted_time}
+{self.price}, {key_data}
+{equipment} {description}
+Gepostet: {formatted_time}
 """
 
         return text
+
+    def __repr__(self) -> str:
+        return self.format()

@@ -65,9 +65,13 @@ class Offer:
             "bramfeld",
             "finkenwerder",
             "hausbruch",
+            "langenbek",
             "lohbrügge",
+            "mamstorf",
             "rahlstedt",
+            "rönneburg",
             "sasel",
+            "sinstorf",
             "schnelsen",
             "tonndorf",
         ]

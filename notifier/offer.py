@@ -68,6 +68,7 @@ class Offer:
             "bramfeld",
             "finkenwerder",
             "hausbruch",
+            "jenfeld",
             "langenbek",
             "lohbrügge",
             "mamstorf",

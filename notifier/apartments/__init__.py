@@ -1,6 +1,6 @@
 import traceback
 
-from telegram.error import NetworkError, TimedOut
+from telegram.error import NetworkError, TimedOut, BadRequest
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
@@ -19,7 +19,7 @@ async def scrape(context: CallbackContext) -> None:
         await scrape_immowelt(context)
     except Exception as ex:
         # Ignore telegram network errors
-        if type(ex) is TimedOut or type(ex) is NetworkError:
+        if type(ex) is TimedOut or type(ex) is NetworkError or type(ex) is BadRequest:
             pass
         else:
             logger.error(f"Got exception {ex}")
@@ -35,7 +35,7 @@ async def scrape(context: CallbackContext) -> None:
         await scrape_kleinanzeigen(context)
     except Exception as ex:
         # Ignore telegram network errors
-        if type(ex) is TimedOut or type(ex) is NetworkError:
+        if type(ex) is TimedOut or type(ex) is NetworkError or type(ex) is BadRequest:
             pass
         else:
             logger.error(f"Got exception {ex}")

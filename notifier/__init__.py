@@ -1,5 +1,5 @@
 from telegram.ext import Application, ContextTypes
-from telegram.error import NetworkError, TimedOut
+from telegram.error import NetworkError, TimedOut, BadRequest
 
 from notifier.config import config
 from notifier.apartments import scrape
@@ -35,7 +35,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
     if ex is None:
         return
 
-    if type(ex) is TimedOut or type(ex) is NetworkError:
+    if type(ex) is TimedOut or type(ex) is NetworkError or type(ex) is BadRequest:
         return
 
     # Raise all other exceptions

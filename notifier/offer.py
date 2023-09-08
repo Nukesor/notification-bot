@@ -90,7 +90,19 @@ class Offer:
 
         return True
 
+    def clean(self):
+        """Clean the offer from unwanted markdown symbols."""
+        markdown_characters = ["[", "`", "*", "_", "`"]
+        translation_table = dict.fromkeys(map(ord, "".join(markdown_characters)), None)
+
+        self.title = self.title.translate(translation_table)
+        self.description = self.description.translate(translation_table)
+
     def format(self) -> str:
+        """Bring the offer into human readable format."""
+        # Clean the offer from unwated symbols
+        self.clean()
+
         if self.time is None:
             formatted_time = str(self.raw_time)
         else:

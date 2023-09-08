@@ -1,8 +1,8 @@
 """Config values for pollbot."""
 import os
 import sys
-
 import tomllib
+
 import tomli_w
 
 default_config = {

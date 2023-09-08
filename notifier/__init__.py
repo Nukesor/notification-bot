@@ -1,11 +1,8 @@
-from telegram.ext import Application
-from telegram import Update
-from telegram.constants import ParseMode
 from telegram.ext import Application, ContextTypes
 from telegram.error import NetworkError, TimedOut
 
 from notifier.config import config
-from notifier.kleinanzeigen import scrape
+from notifier.apartments.kleinanzeigen import scrape
 
 
 def init_telegram():

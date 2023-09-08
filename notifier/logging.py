@@ -1,6 +1,5 @@
 import logging
 
-
 # Enable logging
 logging.basicConfig(
     # Add %(name)s if there're some undesired logs.

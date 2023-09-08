@@ -1,18 +1,20 @@
 import traceback
 from datetime import datetime, timedelta
 
-from bs4 import BeautifulSoup
-from telegram.ext import CallbackContext
-from telegram.error import NetworkError, TimedOut
 import requests
+from bs4 import BeautifulSoup
+from telegram.error import NetworkError, TimedOut
+from telegram.ext import CallbackContext
 
-from notifier.offer import Offer
 from notifier.logging import logger
 from notifier.notify import send_offers
-
+from notifier.offer import Offer
 
 headers = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        + "image/avif,image/webp,*/*;q=0.8"
+    ),
     "Accept-Encoding": "gzip, deflate, br",
     "Accept-Language": "en-US,en;q=0.5",
     "Connection": "keep-alive",
@@ -48,7 +50,11 @@ async def scrape_inner(context: CallbackContext) -> None:
     """Scrape Kleinanzeigen and send regular updates on new events."""
 
     # Load the side with the our current search criteria
-    url = "https://www.kleinanzeigen.de/s-wohnung-mieten/hamburg/anzeige:angebote/preis::1600/c203l9409+wohnung_mieten.qm_d:65%2C+wohnung_mieten.zimmer_d:3%2C5"
+    url = (
+        "https://www.kleinanzeigen.de/s-wohnung-mieten/hamburg/"
+        + "anzeige:angebote/preis::1600/c203l9409+"
+        + "wohnung_mieten.qm_d:65%2C+wohnung_mieten.zimmer_d:3%2C5"
+    )
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
         logger.warn(f"Got response with status code {response.status_code}")
@@ -111,7 +117,7 @@ def extract_offer_details(raw_offer) -> Offer | None:
         offer.time = None
     else:
         # If there's no `:` inside the time, this is a date and older than two days.
-        if not ":" in time:
+        if ":" not in time:
             offer.time = datetime.strptime(time, "%d.%m.%Y")
         else:
             # Parse a recent offer time, which has these two formats:

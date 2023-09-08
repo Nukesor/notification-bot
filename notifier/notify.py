@@ -7,7 +7,6 @@ from telegram.constants import ParseMode
 from notifier.config import config
 from notifier.offer import Offer
 
-
 known_ids_path = os.path.expanduser("~/.local/share/notifier_known_ids")
 
 

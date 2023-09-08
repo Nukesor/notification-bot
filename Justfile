@@ -7,11 +7,11 @@ setup:
     poetry install
 
 lint:
-    poetry run black --check pollbot
+    poetry run black --check notifier
     poetry run isort \
         --skip __init__.py \
-        --check-only pollbot
-    poetry run flake8 pollbot
+        --check-only notifier
+    poetry run flake8 notifier
 
 format:
     # remove unused imports
@@ -19,9 +19,9 @@ format:
         --remove-all-unused-imports \
         --recursive \
         --exclude=__init__.py,.venv \
-        --in-place pollbot
-    poetry run black pollbot
-    poetry run isort pollbot \
+        --in-place notifier
+    poetry run black notifier
+    poetry run isort notifier \
         --skip __init__.py
 
 

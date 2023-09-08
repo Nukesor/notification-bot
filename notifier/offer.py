@@ -71,11 +71,13 @@ class Offer:
             "jenfeld",
             "langenbek",
             "lohbrügge",
+            "neugraben",
             "mamstorf",
             "rahlstedt",
             "rönneburg",
             "sasel",
             "sinstorf",
+            "süldorf",
             "schnelsen",
             "tonndorf",
         ]

@@ -41,3 +41,5 @@ async def send_offers(bot: Bot, offers: list[Offer]) -> None:
 
         known_keys.add_key(offer.source, offer.id)
         known_keys.write_to_disk()
+
+    known_keys.write_to_disk()

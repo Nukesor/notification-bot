@@ -52,6 +52,8 @@ class Offer:
                 return False
 
         forbidden_words = [
+            "tausch",
+            "mitbewohn",
             "untermiete",
             "zwischenmiete",
             "möbliert",

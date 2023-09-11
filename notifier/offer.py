@@ -69,6 +69,7 @@ class Offer:
             "altengamme",
             "bramfeld",
             "curslack",
+            "duvenstedt",
             "finkenwerder",
             "hausbruch",
             "jenfeld",

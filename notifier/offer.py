@@ -90,6 +90,10 @@ class Offer:
             "schnelsen",
             "tatenberg",
             "tonndorf",
+            # Harburg area
+            "bostelbek",
+            "harburg",
+            "eissendorf",
         ]
         # Filter areas that're unsuitable for us
         for area in forbidden_areas:

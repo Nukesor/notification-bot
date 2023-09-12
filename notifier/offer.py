@@ -80,6 +80,7 @@ class Offer:
             "ochsenwerder",
             "neuengamme",
             "mamstorf",
+            "meiendorf",
             "rahlstedt",
             "reitbrook",
             "rönneburg",
@@ -90,6 +91,7 @@ class Offer:
             "schnelsen",
             "tatenberg",
             "tonndorf",
+            "volksdorf",
             # Harburg area
             "bostelbek",
             "harburg",

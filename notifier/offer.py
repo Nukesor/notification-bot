@@ -56,6 +56,7 @@ class Offer:
             "Maisonettewohnung in direkter Alsternähe",
             "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
             "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
+            "Familienfreundliche 4 Zimmer Wohnung im Herzen der Stadt!",
         ]
         # Filter regularily reoccuring scam offers
         for title in scam_titles:

@@ -51,6 +51,18 @@ class Offer:
                 logger.info(f"Ignoring offer (TOO OLD {delta}) for: {self.title}")
                 return False
 
+        scam_titles = [
+            "COURTAGEFREI 3-Zimmer Luxus Wohnung in der Hafencity mit blick auf Traditionsschiffhafen",
+            "Maisonettewohnung in direkter Alsternähe",
+            "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
+            "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
+        ]
+        # Filter regularily reoccuring scam offers
+        for title in scam_titles:
+            if title == self.title:
+                logger.info(f"Ignoring offer (SCAM) for: {self.title}")
+                return False
+
         forbidden_words = [
             "tausch",
             "mitbewohn",

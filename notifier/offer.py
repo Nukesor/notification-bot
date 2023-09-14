@@ -108,6 +108,7 @@ class Offer:
             "bostelbek",
             "harburg",
             "eissendorf",
+            "eißendorf",
         ]
         # Filter areas that're unsuitable for us
         for area in forbidden_areas:

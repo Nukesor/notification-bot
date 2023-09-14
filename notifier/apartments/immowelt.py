@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
-from notifier.offer import Offer
 from notifier.notify import send_offers
+from notifier.offer import Offer
 
 headers = {
     "Accept": (

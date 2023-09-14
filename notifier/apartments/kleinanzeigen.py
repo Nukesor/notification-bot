@@ -37,7 +37,12 @@ async def scrape_kleinanzeigen(context: CallbackContext) -> None:
     if response.status_code != 200:
         logger.warn(f"Got response with status code {response.status_code}")
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    # For some reason, there's a zero-width whitespace character inserted into
+    # some text. This breaks beautiful soup, which is why we remove it.
+    text = response.text
+    text = text.replace("&#8203", "")
+
+    soup = BeautifulSoup(text, "html.parser")
 
     # Find the element that contains all offers
     container = soup.select("div.l-container-row.contentbox-unpadded.no-bg")[0]

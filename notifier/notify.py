@@ -4,8 +4,8 @@ from telegram import Bot
 from telegram.constants import ParseMode
 
 from notifier.config import config
-from notifier.logging import logger
 from notifier.known_keys import KnownKeys
+from notifier.logging import logger
 from notifier.offer import Offer
 
 

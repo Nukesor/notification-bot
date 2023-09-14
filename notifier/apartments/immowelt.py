@@ -8,7 +8,9 @@ from notifier.offer import Offer
 
 headers = {
     "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "text/html;charset=utf-8,"
+        + "application/xhtml+xml;charset=utf-8,"
+        + "application/xml;q=0.9;charset=utf-8,"
         + "image/avif,image/webp,*/*;q=0.8"
     ),
     "Accept-Encoding": "gzip",
@@ -31,6 +33,9 @@ async def scrape_immowelt(context: CallbackContext) -> None:
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
         logger.warn(f"Got response with status code {response.status_code}")
+
+    # Immowelt sends no encoding information. We rely on an educated guess
+    response.encoding = response.apparent_encoding
 
     soup = BeautifulSoup(response.text, "html.parser")
 

@@ -57,6 +57,9 @@ class Offer:
             "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
             "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
             "Familienfreundliche 4 Zimmer Wohnung im Herzen der Stadt!",
+            "Modernisierte 3-Zimmer-Wohnung in Wandsbek",
+            "Mitten im Herzen von St. Pauli!",
+            "Wohnung mit Garten!",
         ]
         # Filter regularily reoccuring scam offers
         for title in scam_titles:

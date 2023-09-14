@@ -113,6 +113,7 @@ class Offer:
             "harburg",
             "eissendorf",
             "eißendorf",
+            "heimfeld",
         ]
         # Filter areas that're unsuitable for us
         for area in forbidden_areas:

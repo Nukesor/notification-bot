@@ -52,14 +52,16 @@ class Offer:
                 return False
 
         scam_titles = [
+            "Angesagte 3 Zimmerwohnung mit Balkon im zentralen Hammerbrook",
             "COURTAGEFREI 3-Zimmer Luxus Wohnung in der Hafencity mit blick auf Traditionsschiffhafen",
-            "Maisonettewohnung in direkter Alsternähe",
             "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
-            "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
+            "Eigentumswohnung in St. Pauli Szene-Lage!" "Wohnung mit Garten!",
             "Familienfreundliche 4 Zimmer Wohnung im Herzen der Stadt!",
-            "Modernisierte 3-Zimmer-Wohnung in Wandsbek",
+            "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
+            "Maisonettewohnung in direkter Alsternähe",
             "Mitten im Herzen von St. Pauli!",
-            "Wohnung mit Garten!",
+            "Modernisierte 3-Zimmer-Wohnung in Wandsbek",
+            "Wohnung mit Garten!!!",
         ]
         # Filter regularily reoccuring scam offers
         for title in scam_titles:

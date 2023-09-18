@@ -62,6 +62,7 @@ class Offer:
             "Maisonettewohnung in direkter Alsternähe",
             "Mitten im Herzen von St. Pauli!",
             "Modernisierte 3-Zimmer-Wohnung in Wandsbek",
+            "Schöne 3-Zimmerwohnung beim Hamburger Stadtpark!",
             "Wohnung mit Garten!!!",
         ]
         # Filter regularily reoccuring scam offers

@@ -57,6 +57,7 @@ class Offer:
             "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
             "Eigentumswohnung in St. Pauli Szene-Lage!" "Wohnung mit Garten!",
             "Familienfreundliche 4 Zimmer Wohnung im Herzen der Stadt!",
+            "Großzügige lichtdurchflutete Neubauwohnungen mit Sonnenbalkon in Eidelstedt",
             "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
             "Maisonettewohnung in direkter Alsternähe",
             "Mitten im Herzen von St. Pauli!",
@@ -65,7 +66,7 @@ class Offer:
         ]
         # Filter regularily reoccuring scam offers
         for title in scam_titles:
-            if title == self.title:
+            if title in self.title:
                 logger.info(f"Ignoring offer (SCAM) for: {self.title}")
                 return False
 

@@ -51,26 +51,6 @@ class Offer:
                 logger.info(f"Ignoring offer (TOO OLD {delta}) for: {self.title}")
                 return False
 
-        scam_titles = [
-            "Angesagte 3 Zimmerwohnung mit Balkon im zentralen Hammerbrook",
-            "COURTAGEFREI 3-Zimmer Luxus Wohnung in der Hafencity mit blick auf Traditionsschiffhafen",
-            "ERSTBEZUG: Hoch über den Dächern Eimsbüttels - Loft mit Lift",
-            "Eigentumswohnung in St. Pauli Szene-Lage!" "Wohnung mit Garten!",
-            "Familienfreundliche 4 Zimmer Wohnung im Herzen der Stadt!",
-            "Großzügige lichtdurchflutete Neubauwohnungen mit Sonnenbalkon in Eidelstedt",
-            "Tierpark Lodge - Tierisch schön wohnen in einem Stadthaus",
-            "Maisonettewohnung in direkter Alsternähe",
-            "Mitten im Herzen von St. Pauli!",
-            "Modernisierte 3-Zimmer-Wohnung in Wandsbek",
-            "Schöne 3-Zimmerwohnung beim Hamburger Stadtpark!",
-            "Wohnung mit Garten!",
-        ]
-        # Filter regularily reoccuring scam offers
-        for title in scam_titles:
-            if title in self.title:
-                logger.info(f"Ignoring offer (SCAM) for: {self.title}")
-                return False
-
         forbidden_words = [
             "tausch",
             "mitbewohn",

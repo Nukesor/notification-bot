@@ -93,6 +93,7 @@ class Offer:
             "duvenstedt",
             "finkenwerder",
             "hausbruch",
+            "hummelsbüttel",
             "jenfeld",
             "langenbek",
             "lohbrügge",

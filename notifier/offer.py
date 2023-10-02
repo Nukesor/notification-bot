@@ -87,6 +87,7 @@ class Offer:
 
         forbidden_areas = [
             "altengamme",
+            "allermöhe",
             "bramfeld",
             "curslack",
             "duvenstedt",

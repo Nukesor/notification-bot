@@ -130,10 +130,12 @@ def extract_offer_details(raw_offer) -> Offer | None:
         .get_text()
         .strip()
     )
-    offer.price = (
+    offer.price = float(
         raw_offer.find(attrs={"class": "aditem-main--middle--price-shipping--price"})
         .get_text()
         .strip()
+        .split(" ")[0]
+        .replace(".", "")
     )
 
     tag_items = raw_offer.find(attrs={"class": "aditem-main--bottom"})

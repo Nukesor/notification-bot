@@ -93,13 +93,26 @@ def extract_offer_details(raw_offer) -> Offer | None:
 
     # Get some infos for the appartment (size, price, rooms)
     key_facts = facts_main.select('div[class*="KeyFacts-"] > div')
+    flat_size = None
     for child in key_facts:
+        fact = child.get_text().strip()
         # Explicitly handle the price
         if child.attrs["data-test"] == "price":
-            offer.price = child.get_text().strip()
+            # Remove euro sign
+            price = fact.replace("€", "").strip()
+            # Remove 1.000 delimiter
+            price = price.replace(".", "")
+            # Convert `,` to `.` for correct float parsing
+            price = price.replace(",", ".")
+
+            offer.price = float(price)
             continue
 
-        offer.key_data.append(child.get_text().strip())
+        # Extract the flat size which is formatted as `124.2 m²`.
+        if "m²" in fact:
+            flat_size = float(fact.split(" ")[0])
+
+        offer.key_data.append(fact)
 
     # Get the title for the offer
     offer.title = facts_main.find("h2").get_text().strip()
@@ -116,5 +129,20 @@ def extract_offer_details(raw_offer) -> Offer | None:
             # Get the list of equipment. Filter out the `...` item.
             equipment = fact_text.split(", ")
             offer.equipment = list(filter(lambda x: x != "...", equipment))
+
+    # Check for scam offers.
+    # Scam offers are usually posted by private providers "Private Anbieter".
+    # Additionally, the prices for those flats are ridiculously cheap.
+    provider_info = link.select('div[class*="ProviderName-"]')[0]
+    provider_name = provider_info.find("span").get_text().strip()
+
+    if provider_name == "Privater Anbieter":
+        offer.scam = True
+        offer.scam_reason.append("Privater Anbieter")
+
+        if flat_size is not None:
+            price_per_qm = offer.price / flat_size
+            if price_per_qm <= 10:
+                offer.scam_reason.append("Zu günstig")
 
     return offer

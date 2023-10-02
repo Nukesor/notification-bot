@@ -12,6 +12,9 @@ class Offer:
     link: str
     source: str
 
+    scam: bool
+    scam_reason: list[str]
+
     title: str
     description: str
     time: datetime | None
@@ -19,7 +22,7 @@ class Offer:
     key_data: list[str]
 
     location: str
-    price: int
+    price: float
 
     def __init__(self):
         """Initialize a new raw offer object."""
@@ -27,6 +30,9 @@ class Offer:
         self.id = ""
         self.link = ""
         self.source = ""
+
+        self.scam = False
+        self.scam_reason = []
 
         self.title = ""
         self.description = ""
@@ -44,7 +50,7 @@ class Offer:
         This is mostly used to filter obviously unviable offers.
         """
         # Don't look at offers that're older than 2 hours
-        threshold = datetime.now() - timedelta(hours=2)
+        threshold = datetime.now() - timedelta(days=2)
         if self.time is not None:
             if self.time < threshold:
                 delta = datetime.now() - self.time
@@ -123,8 +129,17 @@ class Offer:
 
     def format(self) -> str:
         """Bring the offer into human readable format."""
-        # Clean the offer from unwated symbols
+        # Clean the offer from unwanted symbols
         self.clean()
+
+        # Show a scam text, if the offer is a scam
+        if self.scam:
+            reasons = ", ".join(self.scam_reason)
+            text = f"""
+[SCAM: {self.title}]({self.link})
+Gründe: {reasons}
+"""
+            return text
 
         if self.time is None:
             formatted_time = str(self.raw_time)
@@ -146,7 +161,7 @@ class Offer:
 
 {self.location}
 
-{self.price}, {key_data}
+{self.price:.0f} €, {key_data}
 {equipment} {description}
 Gepostet: {formatted_time}
 """

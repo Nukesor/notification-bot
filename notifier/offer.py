@@ -91,6 +91,7 @@ class Offer:
             "meiendorf",
             "rahlstedt",
             "reitbrook",
+            "rellingen",
             "rönneburg",
             "sasel",
             "sinstorf",

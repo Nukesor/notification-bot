@@ -78,6 +78,7 @@ class Offer:
             "curslack",
             "duvenstedt",
             "finkenwerder",
+            "fischbek",
             "hausbruch",
             "hummelsbüttel",
             "jenfeld",

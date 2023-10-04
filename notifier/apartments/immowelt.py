@@ -28,7 +28,7 @@ async def scrape_immowelt(context: CallbackContext) -> None:
     # Load the side with the our current search criteria
     url = (
         "https://www.immowelt.de/suche/hamburg/wohnungen/mieten"
-        + "?ami=65&d=true&ffs=FITTED_KITCHEN&pma=1500&rmi=3&sd=DESC&sf=TIMESTAMP&sp=1"
+        + "?ami=65&d=true&pma=1500&rmi=3&sd=DESC&sf=TIMESTAMP&sp=1"
     )
     response = requests.get(url, headers=headers)
     if response.status_code != 200:

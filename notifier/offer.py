@@ -89,7 +89,7 @@ class Offer:
             "ochsenwerder",
             "neuengamme",
             "neuenfelde",
-            "mamstorf",
+            "marmstorf",
             "meiendorf",
             "rahlstedt",
             "reitbrook",

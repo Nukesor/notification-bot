@@ -88,6 +88,7 @@ class Offer:
             "kirchwerder",
             "ochsenwerder",
             "neuengamme",
+            "neuenfelde",
             "mamstorf",
             "meiendorf",
             "rahlstedt",

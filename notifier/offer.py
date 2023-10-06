@@ -63,6 +63,7 @@ class Offer:
             "untermiete",
             "zwischenmiete",
             "möbliert",
+            "gesucht",
         ]
 
         # Filter offers that contain forbidden words in their title or description

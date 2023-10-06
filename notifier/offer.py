@@ -107,10 +107,11 @@ class Offer:
             "volksdorf",
             # Harburg area
             "bostelbek",
-            "harburg",
             "eissendorf",
             "eißendorf",
+            "harburg",
             "heimfeld",
+            "wilstorf",
         ]
         # Filter areas that're unsuitable for us
         for area in forbidden_areas:

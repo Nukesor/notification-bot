@@ -59,6 +59,7 @@ class Offer:
 
         forbidden_words = [
             "tausch",
+            "wohnungsswap",
             "mitbewohn",
             "untermiete",
             "zwischenmiete",

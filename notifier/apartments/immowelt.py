@@ -133,7 +133,12 @@ def extract_offer_details(raw_offer) -> Offer | None:
     # Check for scam offers.
     # Scam offers are usually posted by private providers "Private Anbieter".
     # Additionally, the prices for those flats are ridiculously cheap.
-    provider_info = link.select('div[class*="ProviderName-"]')[0]
+    provider_info = link.select('div[class*="ProviderName-"]')
+    if len(provider_info) == 0:
+        logger.error(f"Found offer with no provider info")
+        return None
+
+    provider_info = provider_info[0]
     provider_name = provider_info.find("span").get_text().strip()
 
     if provider_name == "Privater Anbieter":

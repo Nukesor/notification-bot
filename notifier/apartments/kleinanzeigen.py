@@ -45,7 +45,11 @@ async def scrape_kleinanzeigen(context: CallbackContext) -> None:
     soup = BeautifulSoup(text, "html.parser")
 
     # Find the element that contains all offers
-    container = soup.select("div.l-container-row.contentbox-unpadded.no-bg")[0]
+    container = soup.select("div.l-container-row.contentbox-unpadded.no-bg")
+    if len(container) == 0:
+        logger.error("Container is empty. Please investigate.")
+
+    container = container[0]
     if container is None:
         logger.error("Failed to get container. Please investigate.")
         return

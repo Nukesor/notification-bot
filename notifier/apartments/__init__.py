@@ -6,6 +6,7 @@ from telegram.ext import CallbackContext
 from notifier.logging import logger
 from .immowelt import scrape_immowelt
 from .kleinanzeigen import scrape_kleinanzeigen
+from notifier.config import config
 
 
 async def scrape(context: CallbackContext) -> None:
@@ -24,10 +25,10 @@ async def scrape(context: CallbackContext) -> None:
         else:
             logger.error(f"Got exception {ex}")
             traceback.print_exc()
-            # await context.bot.sendMessage(
-            #    chat_id=config["telegram"]["target_channel"],
-            #    text=f"Scraper failed with exception {ex}",
-            # )
+            await context.bot.sendMessage(
+                chat_id=config["telegram"]["target_channel"],
+                text=f"Scraper failed with exception {ex}",
+            )
             pass
 
     try:
@@ -40,8 +41,8 @@ async def scrape(context: CallbackContext) -> None:
         else:
             logger.error(f"Got exception {ex}")
             traceback.print_exc()
-            # await context.bot.sendMessage(
-            #    chat_id=config["telegram"]["target_channel"],
-            #    text=f"Scraper failed with exception {ex}",
-            # )
+            await context.bot.sendMessage(
+                chat_id=config["telegram"]["target_channel"],
+                text=f"Scraper failed with exception {ex}",
+            )
             pass

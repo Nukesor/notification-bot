@@ -169,8 +169,8 @@ Gründe: {reasons}
         key_data = ", ".join(self.key_data)
         text = f"""Von {self.source}:
 [{self.title}]({self.link})
-#{self.id}
-`#{self.id}`
+
+#{self.id} (`#{self.id}`)
 
 {self.location}
 

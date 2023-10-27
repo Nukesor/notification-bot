@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 from notifier.logging import logger
 
 
-class Offer:
+class Apartment:
     """
-    A generic representation of an flat offer.
+    A generic representation of an apartment offer.
     """
 
     id: str

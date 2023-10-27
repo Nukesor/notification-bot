@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
-from notifier.notify import send_offers
-from notifier.offer import Offer
+from notifier.notify import send_apartment_offers
+from .offer import Apartment
 
 headers = {
     "Accept": (
@@ -69,11 +69,11 @@ async def scrape_immowelt(context: CallbackContext) -> None:
 
             raise ex
 
-    await send_offers(context.bot, offers)
+    await send_apartment_offers(context.bot, offers)
 
 
-def extract_offer_details(raw_offer) -> Offer | None:
-    offer = Offer()
+def extract_offer_details(raw_offer) -> Apartment | None:
+    offer = Apartment()
     offer.source = "Immowelt"
     # There's no time info on offers from immowelt
     offer.raw_time = "vor ca. 5min"

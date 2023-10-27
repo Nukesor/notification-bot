@@ -4,12 +4,12 @@ from telegram.error import NetworkError, TimedOut, BadRequest
 from telegram.ext import CallbackContext
 
 from notifier.logging import logger
+from notifier.config import config
 from .immowelt import scrape_immowelt
 from .kleinanzeigen import scrape_kleinanzeigen
-from notifier.config import config
 
 
-async def scrape(context: CallbackContext) -> None:
+async def scrape_apartments(context: CallbackContext) -> None:
     """This is a high level wrapper around the actual scraper logic.
 
     It's purpose is to allow easy global error handling.

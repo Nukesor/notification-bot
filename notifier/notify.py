@@ -6,10 +6,10 @@ from telegram.constants import ParseMode
 from notifier.config import config
 from notifier.known_keys import KnownKeys
 from notifier.logging import logger
-from notifier.offer import Offer
+from notifier.apartments.offer import Apartment
 
 
-async def send_offers(bot: Bot, offers: list[Offer]) -> None:
+async def send_apartment_offers(bot: Bot, offers: list[Apartment]) -> None:
     """Get a list of offers and send them.
 
     We do some additional checks in here to only send offers that are viable to us.

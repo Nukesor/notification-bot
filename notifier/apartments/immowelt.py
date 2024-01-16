@@ -4,6 +4,7 @@ from telegram.ext import CallbackContext
 
 from notifier.logging import logger
 from notifier.notify import send_apartment_offers
+
 from .offer import Apartment
 
 headers = {
@@ -135,7 +136,7 @@ def extract_offer_details(raw_offer) -> Apartment | None:
     # Additionally, the prices for those flats are ridiculously cheap.
     provider_info = link.select('div[class*="ProviderName-"]')
     if len(provider_info) == 0:
-        logger.error(f"Found offer with no provider info")
+        logger.error("Found offer with no provider info")
         return None
 
     provider_info = provider_info[0]

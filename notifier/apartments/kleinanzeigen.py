@@ -6,6 +6,7 @@ from telegram.ext import CallbackContext
 
 from notifier.logging import logger
 from notifier.notify import send_apartment_offers
+
 from .offer import Apartment
 
 headers = {

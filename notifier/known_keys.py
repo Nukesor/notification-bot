@@ -13,10 +13,8 @@ class KnownKeys:
     It handles the keys of each site individually.
     """
 
-    known_keys: dict[str, list[str]] = {}
-
     def __init__(self) -> None:
-        self.known_keys = {}
+        self.known_keys: dict[str, list[str]] = {}
 
     def has_key(self, site: str, key: str) -> bool:
         """Check if a key has been notified about for a particular site."""

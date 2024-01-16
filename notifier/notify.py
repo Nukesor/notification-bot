@@ -3,10 +3,10 @@ import time
 from telegram import Bot
 from telegram.constants import ParseMode
 
+from notifier.apartments.offer import Apartment
 from notifier.config import config
 from notifier.known_keys import KnownKeys
 from notifier.logging import logger
-from notifier.apartments.offer import Apartment
 
 
 async def send_apartment_offers(bot: Bot, offers: list[Apartment]) -> None:
